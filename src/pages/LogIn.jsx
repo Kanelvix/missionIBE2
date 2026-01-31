@@ -1,8 +1,8 @@
 import React from 'react'
 
 import '../App.css'
-import Navbar from '../components/navbar'
-import Card from '../components/card'
+import Navbar from '../components/organisms/Navbar'
+import Card from '../components/organisms/Card'
 
 const loginField = [
   {
