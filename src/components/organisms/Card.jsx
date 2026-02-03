@@ -42,7 +42,7 @@ const Card = (props) => {
           <p className='text-[#4A505C] text-sm'>atau</p>
         </div>
 
-        <button className='h-9 text-[#4A505C] bg-transparent rounded-lg font-semibold cursor-pointer hover:bg-[#F9FAFC] duration-100 w-full flex items-center justify-center gap-1 border-[1px] border-[#3A35411F]'>
+        <button className='h-10 text-[#4A505C] bg-transparent rounded-lg font-semibold cursor-pointer hover:bg-[#F9FAFC] duration-100 w-full flex items-center justify-center gap-1 border-[1px] border-[#3A35411F]'>
           <img src={google} alt="google-icon"/>
           {props.btnText1} dengan Google
         </button>

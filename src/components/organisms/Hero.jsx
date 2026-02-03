@@ -17,7 +17,7 @@ function Hero() {
         
         <SectionTitle 
           textAlign="center"
-          fontSize="5xl"
+          fontSize="3rem"
           title="Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video Interaktif!"
           desc="Temukan ilmu baru yang menarik dan mendalam melalui koleksi video pembelajaran berkualitas tinggi. Tidak hanya itu, Anda juga dapat berpartisipasi dalam latihan interaktif yang akan meningkatkan pemahaman Anda."
         />
