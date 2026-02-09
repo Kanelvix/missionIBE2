@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOM from "react-dom/client";
 import './index.css';
+
 import App from './App.jsx';
 import LogIn from './pages/LogIn.jsx';
 import SignIn from './pages/SignIn.jsx';
@@ -10,7 +11,7 @@ import Pesanan from './pages/Pesanan.jsx';
 import Kelas from './pages/Kelas.jsx';
 import Profil from './pages/Profil.jsx';
 
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { AuthLayout } from './layout/AuthLayout.jsx';
 import { MainLayout } from './layout/MainLayout.jsx';
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/homepage" replace />
+      },
       {
         element: <AuthLayout />,
         children: [
