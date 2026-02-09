@@ -23,7 +23,7 @@ function CoursesCard(props) {
       </div>
       
       <div className='flex justify-between items-center'>
-        <RatingStars />
+        <RatingStars rating={props.rating} totalReview={props.totalReview} />
         <Price price={`Rp ${props.price}`} />
       </div>
     </div>

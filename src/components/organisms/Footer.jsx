@@ -79,7 +79,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className='h-[1px] w-full bg-[--border-color] mt-8'></div>
+        <div className='h-[1px] w-full bg-[--border-color] md:mt-8'></div>
 
         <div className='flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between'>
           <p className='font-medium'>@2023 Gerobak Sayur All Rights Reserved.</p>

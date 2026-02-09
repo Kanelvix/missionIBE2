@@ -12,6 +12,8 @@ function CoursesGrid(props) {
           key={item.id}
           pfp={item.pfp}
           price={item.price}
+          rating={item.rating}
+          totalReview={item.totalReview}
           name={item.name}
           role={item.role}
           company={item.company}
