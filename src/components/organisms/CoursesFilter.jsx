@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FilterGroup from './FilterGroup';
 import { filterTitleIcons } from '../../assets/Icons/filterTitleIcons';
 
 const filter = [
   {
     title: "Bidang Studi",
+    key: "bidangStudi",
     icon: filterTitleIcons.subject,
     options: [
       "Pemasaran",
@@ -14,7 +15,8 @@ const filter = [
     ]
   },
   {
-    title: "Price",
+    title: "Harga",
+    key: "harga",
     icon: filterTitleIcons.price,
     options: [
       "Semua",
@@ -24,6 +26,7 @@ const filter = [
   },
   {
     title: "Durasi",
+    key: "durasi",
     icon: filterTitleIcons.clock,
     options: [
       "Semua",
@@ -35,10 +38,19 @@ const filter = [
 ];
 
 function CoursesFilter() {
+  const [filters, setFilters] = useState({
+    bidangStudi: [],
+    harga: "Semua",
+    durasi: "Semua",
+  });
 
   const resetFilter = () => {
-
-  }
+    setFilters({
+      bidangStudi: [],
+      harga: "Semua",
+      durasi: "Semua",
+    })
+  };
 
   return (
     <div className='p-5 bg-white border border-[--border-color] rounded-lg flex flex-col gap-4'>
@@ -51,7 +63,14 @@ function CoursesFilter() {
           icon={item.icon}
           title={item.title}
           options={item.options}
-          key={item.title} />
+          key={item.key}
+          selected={filters[item.key]}
+          setSelected={(value) => 
+            setFilters(prev => ({
+              ...prev,
+              [item.key]: value
+            }))
+          } />
       ))}
     </div>
   )

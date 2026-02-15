@@ -37,7 +37,7 @@ function FilterGroup(props) {
         ${isExtended ? 'max-h-96 opacity-100 mb-4 mt-2' : 'max-h-0 opacity-0'}`
       }>
         {props.options.map((option, i) => (
-          <FilterOption option={option} key={i} title={props.title} name={props.title} value={option} />
+          <FilterOption option={option} key={i} title={props.title} name={props.title} value={option} selected={props.selected} setSelected={props.setSelected} />
         ))}
       </div>
     </div>

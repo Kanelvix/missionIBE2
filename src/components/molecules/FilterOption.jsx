@@ -6,7 +6,17 @@ function FilterOption(props) {
       {props.title === "Bidang Studi"
       ? <label className='flex items-center mx-4 my-1 cursor-pointer'>
           <div className='relative size-5 shrink-0 bg-[--light-green-color] rounded-md'>
-            <input type="checkbox" className='absolute peer size-full opacity-0' />
+            <input type="checkbox" className='absolute peer size-full opacity-0'
+            checked={props.selected.includes(props.value)}
+            onChange={() => {
+              if (props.selected.includes(props.value)) {
+                props.setSelected(
+                  props.selected.filter(v => v !== props.value)
+                )
+              } else {
+                props.setSelected([...props.selected, props.value])
+              }
+            }} />
             <span className='
             size-full absolute border-2 border-[--green-color] rounded-md
             after:content-[""] after:absolute after:left-1 after:bottom-1
@@ -18,7 +28,9 @@ function FilterOption(props) {
         </label>
       : <label className='flex items-center mx-4 my-1 cursor-pointer'>
           <div className='relative size-5 shrink-0 bg-[--light-green-color] rounded-full'>
-            <input type="radio" className='absolute peer inset-0 opacity-0' name={props.name.toLowerCase()} value={props.value} defaultChecked={props.value==="Semua"} />
+            <input type="radio" className='absolute peer inset-0 opacity-0' name={props.name.toLowerCase()} value={props.value}
+            checked={props.selected === props.value}
+            onChange={() => props.setSelected(props.value)} />
             <span className='
               size-full relative block
               border-2 border-[--green-color]
