@@ -16,12 +16,13 @@
   --border-color: #3A35411F;
   --red-color: #F64920;
   --green-color: #3ECF4C;
+  --light-green-color: #E2FCD9CC;
   --base-color: #333333AD;
   --yellow-color: #FFBD3A;
 }
 
 main {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 p {
