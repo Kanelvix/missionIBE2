@@ -27,7 +27,7 @@ const sideTabs = [
 
 function Sidebar() {
   return (
-    <div className='md:fixed bg-white border-r border-[--border-color] top-0 left-0 right-0 md:right-auto md:bottom-0 flex flex-col gap-3 md:gap-6 justify-between shadow-sm md:shadow-none pb-2 md:pb-0'>
+    <div className='md:fixed bg-white border-r border-[--border-color] top-0 left-0 right-0 md:right-auto md:bottom-0 flex flex-col gap-3 md:gap-6 justify-between shadow-sm md:shadow-none pb-2 md:pb-0 z-50'>
       <NavLink to={'/homepage'} className='flex justify-center cursor-pointer py-4 md:py-6 px-10 border-b border-[#F5F5F5] hover:opacity-80 duration-300 w-full'>
         <img src={videoBelajar} alt="" className='h-7 md:h-8' />
       </NavLink>
