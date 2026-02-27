@@ -21,8 +21,7 @@ const signinField = [
     label: "Jenis Kelamin",
     type: "select",
     options: [ 
-      { label: "Wanita", value: "woman" },
-      { label: "Pria", value: "man" }
+      "Wanita", "Pria"
     ]
   },
   {

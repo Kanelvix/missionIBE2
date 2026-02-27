@@ -1,17 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SectionTitle from '../molecules/SectionTitle'
 import CoursesGrid from './CoursesGrid'
 import CategoryTabs from '../molecules/CategoryTabs'
-import courses from '../../data/courses'
+import axios from 'axios'
 
 
 function CourseSection() {
   const [activeTab, setActiveTab] = useState("Semua Kelas")
 
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const fetchCourses = () => {
+    axios.get('https://699fde8d3188b0b1d536fff8.mockapi.io/api/v1/courses')
+    .then((response) => {
+      setData(response.data);
+    }).catch((error) => {
+      console.log("error", error);
+    }).finally(() => {
+      setLoading(false);
+    })
+  }
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
   const filteredCourses =
     activeTab === "Semua Kelas"
-      ? courses
-      : courses.filter(course => course.category === activeTab)
+      ? data
+      : data.filter(course => course.category === activeTab)
 
   return (
     <div className='w-full flex flex-col gap-6 md:gap-8'>
@@ -26,7 +44,7 @@ function CourseSection() {
       <div className='w-full'>
         <CategoryTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
-      <CoursesGrid courses={filteredCourses} />
+      <CoursesGrid data={filteredCourses} loading={loading} />
     </div>
   )
 }

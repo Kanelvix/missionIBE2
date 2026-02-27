@@ -24,12 +24,12 @@ function Products() {
   }, []);
   
   return (
-    <section className='px-4 md:ml-72 flex flex-col gap-8 py-6g'>
+    <section className='px-4 md:ml-72 flex flex-col gap-8 py-6'>
       <div>
         <p className='text-3xl text-[--dark-color] font-bold'>Product Management</p>
       </div>
       <AddProductForm fetchCourses={fetchCourses} editing={editing} setEditing={setEditing} />
-      <ProductList loading={loading} data={data} setEditing={setEditing} />
+      <ProductList loading={loading} data={data} setEditing={setEditing} fetchCourses={fetchCourses} />
     </section>
   )
 }

@@ -17,7 +17,6 @@ import { AuthLayout } from './layout/AuthLayout.jsx';
 import { MainLayout } from './layout/MainLayout.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import DashboardLayout from './layout/DashboardLayout.jsx';
-import Users from './pages/Users.jsx';
 import Products from './pages/Products.jsx';
 
 const router = createBrowserRouter([
@@ -49,8 +48,7 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children:[
           {path: "/dashboard", Component: Dashboard},
-          {path: "/products", Component: Products},
-          {path: "/users", Component: Users},
+          {path: "/products", Component: Products}
         ]
       }
     ]

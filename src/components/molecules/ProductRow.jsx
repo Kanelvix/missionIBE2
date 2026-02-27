@@ -2,7 +2,7 @@ import React from 'react'
 import ActionBtn from '../atoms/ActionBtn'
 import Price from '../atoms/Price'
 
-function Products( {title, desc, price, mentor, role, onEdit} ) {
+function Products( {title, desc, price, mentor, role, onEdit, handleDelete} ) {
   return (
     <tr className='border-t'>
       <td className='p-3 md:p-4'>
@@ -19,7 +19,7 @@ function Products( {title, desc, price, mentor, role, onEdit} ) {
       <td className='p-3 md:p-4'>
         <div className='flex gap-2 justify-center'>
           <ActionBtn action="Edit" onEdit={onEdit} />
-          <ActionBtn action="Delete" />
+          <ActionBtn action="Delete" handleDelete={handleDelete} />
         </div>
       </td>
     </tr>
