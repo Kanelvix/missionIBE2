@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import ProductFormInput from '../molecules/ProductFormInput'
 import ProductFormSelect from '../molecules/ProductFormSelect'
 import axios from 'axios'
@@ -71,7 +71,7 @@ const inputs = [
 
 const defaultForm = {
   title: "",
-  category: "bisnis",
+  category: "Bisnis",
   desc: "",
   price: "",
   rating: 0,
@@ -92,6 +92,10 @@ const action = (state, action) => {
       };
     }
 
+    case "set_all_fields": {
+      return action.payload;
+    }
+
     default: {
       return state;
     }
@@ -102,8 +106,29 @@ const action = (state, action) => {
   }
 }
 
-function AddProductForm({fetchCourses}) {
+function AddProductForm({fetchCourses, editing, setEditing}) {
   const [data, setData] = useReducer(action, defaultForm);
+
+
+  useEffect(() => {
+    if (editing) {
+      setData({
+        type: "set_all_fields",
+        payload: editing
+      });
+    }
+  }, [editing])
+
+  const updateCourse = async(data) => {
+    try {
+      await axios.put(
+        `https://699fde8d3188b0b1d536fff8.mockapi.io/api/v1/courses/${data.id}`, data
+      );
+      fetchCourses();
+    } catch {
+      console.log('failed update');
+    }
+  }
 
   const createCourse = async(data) => {
     try {
@@ -115,16 +140,22 @@ function AddProductForm({fetchCourses}) {
       console.log('failed')
     }    
   }
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    createCourse(data);
+
+    if (editing) {
+      updateCourse(data);
+      setEditing(null);
+    } else {
+      createCourse(data);
+    }
     setData({type:"reset"})
   }
 
   return (
     <form onSubmit={handleSubmit} className='bg-white border border-[--border-color] p-5 rounded-lg flex flex-col gap-5'>
-      <p className='font-semibold text-[--dark-color] text-xl py-2 border-b border-[--border-color]'>Tambah Produk Baru</p>
+      <p className='font-semibold text-[--dark-color] text-xl py-2 border-b border-[--border-color]'>{editing ? 'Perbarui Produk' : 'Tambah Produk Baru'}</p>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 border-b pb-5'>
         {
           inputs.map((item)=>(
@@ -132,6 +163,7 @@ function AddProductForm({fetchCourses}) {
             ? <ProductFormSelect
               title={item.title}
               key={item.title}
+              value={data[item.data]}
               onChange={(e) =>
                 setData({
                 type: "change_field",
@@ -157,7 +189,7 @@ function AddProductForm({fetchCourses}) {
         
       </div>
       <div className='w-max self-end'>
-        <button className='bg-[--blue-color] text-white hover:bg-[--darker-blue-color] h-10 rounded-lg font-medium text-sm md:text-base cursor-pointer w-full px-8 duration-300 active:bg-[--blue-color]' type='submit'>Tambah Produk</button>
+        <button className='bg-[--blue-color] text-white hover:bg-[--darker-blue-color] h-10 rounded-lg font-medium text-sm md:text-base cursor-pointer w-full px-8 duration-300 active:bg-[--blue-color]' type='submit'>{editing ? 'Perbarui Produk' : 'Tambah Produk'}</button>
       </div>
     </form>
   )
