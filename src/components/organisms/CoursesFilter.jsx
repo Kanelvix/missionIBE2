@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import FilterGroup from './FilterGroup';
 import { filterTitleIcons } from '../../assets/Icons/filterTitleIcons';
 
@@ -8,10 +8,10 @@ const filter = [
     key: "bidangStudi",
     icon: filterTitleIcons.subject,
     options: [
+      "Bisnis",
+      "Desain",
       "Pemasaran",
-      "Digital & Teknologi",
       "Pengembangan Diri",
-      "Bisnis Manajemen"
     ]
   },
   {
@@ -37,12 +37,8 @@ const filter = [
   },
 ];
 
-function CoursesFilter() {
-  const [filters, setFilters] = useState({
-    bidangStudi: [],
-    harga: "Semua",
-    durasi: "Semua",
-  });
+function CoursesFilter({filters, setFilters}) {
+  
 
   const resetFilter = () => {
     setFilters({
