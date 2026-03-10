@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SectionTitle from '../components/molecules/SectionTitle'
 import DashboardCards from '../components/molecules/DashboardCards'
-import { api } from '../config/api';
+import { getCourses } from '../services/courses';
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ function Dashboard() {
   ]
 
   useEffect(() => {
-    api.get('/courses')
+    getCourses()
     .then((response) => {
       setData(response.data);
     }).catch((error) => {

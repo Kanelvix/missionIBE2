@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SectionTitle from '../molecules/SectionTitle'
 import CoursesGrid from './CoursesGrid'
 import CategoryTabs from '../molecules/CategoryTabs'
-import { api } from '../../config/api'
+import { getCourses } from '../../services/courses'
 
 
 function CourseSection() {
@@ -12,7 +12,7 @@ function CourseSection() {
   const [data, setData] = useState([]);
 
   const fetchCourses = () => {
-    api.get('/courses')
+    getCourses()
     .then((response) => {
       setData(response.data);
     }).catch((error) => {

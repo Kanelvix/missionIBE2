@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AddProductForm from '../components/organisms/AddProductForm'
 import ProductList from '../components/organisms/ProductList'
-import { api } from '../config/api';
+import { getCourses } from '../services/courses';
 
 function Products() {
   const [loading, setLoading] = useState(true);
@@ -9,7 +9,7 @@ function Products() {
   const [editing, setEditing] = useState(null);
 
   const fetchCourses = () => {
-    api.get('/courses')
+    getCourses()
     .then((response) => {
       setData(response.data);
     }).catch((error) => {

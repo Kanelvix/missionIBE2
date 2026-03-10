@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 import ProductFormInput from '../molecules/ProductFormInput'
 import ProductFormSelect from '../molecules/ProductFormSelect'
-import axios from 'axios'
+import { postCourse, putCourse } from '../../services/courses'
 
 const inputs = [
   {
@@ -121,9 +121,7 @@ function AddProductForm({fetchCourses, editing, setEditing}) {
 
   const updateCourse = async(data) => {
     try {
-      await axios.put(
-        `https://699fde8d3188b0b1d536fff8.mockapi.io/api/v1/courses/${data.id}`, data
-      );
+      await putCourse(data);
       fetchCourses();
     } catch {
       console.log('failed update');
@@ -132,9 +130,7 @@ function AddProductForm({fetchCourses, editing, setEditing}) {
 
   const createCourse = async(data) => {
     try {
-      await axios.post(
-        'https://699fde8d3188b0b1d536fff8.mockapi.io/api/v1/courses', data
-      );
+      await postCourse(data);
       fetchCourses();
     } catch{
       console.log('failed')

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import ProductsRow from '../molecules/ProductRow.jsx'
 import Pagination from './Pagination.jsx'
-import { api } from '../../config/api.js';
+import { deleteCourse } from '../../services/courses.js';
 
 function ProductList({loading, data, setEditing, fetchCourses}) {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
 
-  const deleteCourse = async(id) => {
-    await api.delete(`/courses/${id}`)
+  const handleDelete = async(id) => {
+    await deleteCourse(id);
     fetchCourses();
   }
 
@@ -37,7 +37,7 @@ function ProductList({loading, data, setEditing, fetchCourses}) {
             </thead>
             <tbody>
               {currentRows.map((item) => (
-                <ProductsRow key={item.id} title={item.title} desc={item.desc} price={item.price} mentor={item.name} role={item.role} onEdit={() => onEdit(item)} handleDelete={() => deleteCourse(item.id)} />
+                <ProductsRow key={item.id} title={item.title} desc={item.desc} price={item.price} mentor={item.name} role={item.role} onEdit={() => onEdit(item)} handleDelete={() => handleDelete(item.id)} />
               ))}
             </tbody>
           </table>
