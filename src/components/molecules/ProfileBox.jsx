@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import avatar from '../../assets/Avatar.png';
 import menuIcon from '../../assets/menu.svg';
 import ProfileMenu from '../molecules/ProfileMenu';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 
 
 const profileMenus = [
@@ -35,6 +35,8 @@ const profileMenus = [
 function ProfileBox() {
   const [open, setOpen] = useState(false);
   const [isMd, setIsMd] = useState(false);
+
+  const location = useLocation();
 
   const menuRef = useRef();
 
@@ -79,7 +81,12 @@ function ProfileBox() {
       <div className='hidden md:flex items-center gap-5'>
         <NavLink
           to='/kategori'
-          className='text-[--base-color] cursor-pointer duration-300 hover:text-black'
+          className={`
+            cursor-pointer duration-300
+            ${location.pathname === '/kategori'
+              ? 'text-[--green-color] hover:text-[#2c9437] font-medium'
+              : 'text-[--base-color] hover:text-black'}
+          `}
           onClick={() => setOpen(false)}
         >Kategori</NavLink>
         <img src={avatar} alt="profile" className='size-11 cursor-pointer hover:opacity-85 active:opacity-100 duration-300'

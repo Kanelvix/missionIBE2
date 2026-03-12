@@ -1,9 +1,10 @@
 import React from 'react'
 import CoursesCard from './CoursesCard'
 
-function CoursesGrid({loading, data}) {
+function CoursesGrid({loading, data, location}) {
   return (
-    <section className='grid gap-5 md:gap-6 md:grid-cols-2 lg:grid-cols-3 '>
+    <section className={`grid gap-5 md:gap-6 
+    ${location==="/kategori" ? 'lg:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
       {
         loading ? <p className='text-xl font-semibold'>Loading...</p> :
         data.map((item) => (

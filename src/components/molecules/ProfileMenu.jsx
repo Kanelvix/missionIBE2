@@ -15,7 +15,7 @@ function ProfileMenu(props) {
           </NavLink>
         ) : (
           <NavLink to={`/${item.toPage}`} key={item.name} onClick={props.onClick}>
-            <p className='font-medium px-3 py-4 border-b-[1px] cursor-pointer hover:text-[--dark-color] hover:bg-[--border-color] duration-300'>{item.name}</p>
+            <p className='font-medium px-3 py-4 border-b-[1px] cursor-pointer hover:text-[--dark-color] hover:bg-[--selected-color] duration-300'>{item.name}</p>
           </NavLink>
         )
       ))}

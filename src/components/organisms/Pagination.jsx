@@ -1,9 +1,9 @@
 import React from 'react'
-import arrow from '../../assets/arrow.svg'
+import PrevNextBtn from '../atoms/PrevNextBtn';
 
-function Pagination( {totalRows, rowsPerPage, setCurrentPage, currentPage} ) {
+function Pagination( {totalCourses, coursesPerPage, setCurrentPage, currentPage, location} ) {
   const maxVisiblePages = 4;
-  const totalPages = Math.ceil(totalRows/rowsPerPage);
+  const totalPages = Math.ceil(totalCourses/coursesPerPage);
 
   let startPage = Math.max(
     1, currentPage - Math.floor(maxVisiblePages/2)
@@ -22,31 +22,31 @@ function Pagination( {totalRows, rowsPerPage, setCurrentPage, currentPage} ) {
     pages.push(i);
   }
 
-  const nextPage = () => {
-    if (currentPage < totalPages){
-      setCurrentPage(currentPage + 1);
-    }
-  }
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  }
-
   return (
-    <div className='flex gap-3 justify-center'>
-      <button className='size-7 text-[--base-color] rounded-md bg-[--light-gray-color-2] hover:text-[--dark-color] hover:bg-[--light-gray-color] transition-all border-2 flex justify-center items-center' onClick={prevPage}>
-        <img src={arrow} alt="" className='rotate-180' />
-      </button>
+    <div className={`flex ${location === '/products' ? 'gap-3 justify-center' : 'gap-1 md:gap-2 justify-end'}`}>
+      <PrevNextBtn setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={pages.length} location={location} />
       {
         pages.map((page, i) => {
-          return <button key={i} className={`size-7 rounded-md font-medium transition-all border-2 flex justify-center items-center ${page === currentPage ? 'bg-[--light-blue-color] text-[--blue-color]' : 'text-[--base-color] bg-[--light-gray-color-2] hover:text-[--dark-color] hover:bg-[--light-gray-color]'}`} onClick={() => setCurrentPage(page)}>{page}</button>
+          return <button 
+            key={i}
+            onClick={() => setCurrentPage(page)}
+            className={`rounded flex justify-center items-center transition-all 
+              ${
+                location === '/products'
+                ? `size-7 font-medium border-2
+                ${page === currentPage 
+                  ? 'bg-[--light-blue-color] text-[--blue-color]' 
+                  : 'text-[--base-color] bg-[--light-gray-color-2] hover:text-[--dark-color] hover:bg-[--light-gray-color]'}`
+                : `text-sm font-semibold size-10
+                ${page === currentPage
+                  ? 'bg-[--yellow-color] text-white'
+                  : 'text-[--base-color] hover:bg-[--light-yellow-color-2] hover:text-white'}
+              `}
+            `}
+          >{page}</button>
         })
       }
-      <button className='size-7 text-[--base-color] rounded-md bg-[--light-gray-color-2] hover:text-[--dark-color] hover:bg-[--light-gray-color] transition-all border-2 flex justify-center items-center' onClick={nextPage}>
-        <img src={arrow} alt="" />
-      </button>
+      <PrevNextBtn dir="right" setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} location={location} />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import arrow from '../../assets/arrow.svg'
+import arrow from '../../assets/Arrows/arrow.svg'
 
 function FooterLinks(props) {
   const [expanded, setexpanded] = useState(false);

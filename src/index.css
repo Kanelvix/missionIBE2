@@ -32,10 +32,16 @@
   --light-gray-color: #F5F5F5;
   --light-gray-color-2: rgba(245, 245, 245, 0.4);
   --secondary-color: #C1C2C4;
+
+  /* cari light green color2 */
+  --light-green-color-2: #E2FCD9CC;
+  --light-yellow-color-2: #FFDF88;
+  --selected-color: #F4F5FA;
+  --hover-color: #d7dae6;
 }
 
 main {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 p {

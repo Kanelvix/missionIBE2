@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ProductsRow from '../molecules/ProductRow.jsx'
 import Pagination from './Pagination.jsx'
 import { deleteCourse } from '../../services/courses.js';
+import { useLocation } from 'react-router';
 
 function ProductList({loading, data, setEditing, fetchCourses}) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +21,8 @@ function ProductList({loading, data, setEditing, fetchCourses}) {
   const lastRow = currentPage * rowsPerPage;
   const firstRow = lastRow - rowsPerPage;
   const currentRows = data.slice(firstRow, lastRow);
+
+  const location = useLocation();
 
   return (
     <div className='bg-white p-5 rounded-lg border border-[--border-color] overflow-auto'>
@@ -44,10 +47,11 @@ function ProductList({loading, data, setEditing, fetchCourses}) {
         )
       }
       <Pagination
-        totalRows={data.length}
-        rowsPerPage={rowsPerPage}
+        totalCourses={data.length}
+        coursesPerPage={rowsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
+        location = {location.pathname}
       />
     </div>
   )
