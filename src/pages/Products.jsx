@@ -39,7 +39,6 @@ function Products() {
       />
       <ProductList
         loading={loading}
-        data={data}
         setEditing={setEditing}
       />
     </section>

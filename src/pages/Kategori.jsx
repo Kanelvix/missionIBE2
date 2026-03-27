@@ -108,7 +108,7 @@ function Kategori() {
         />
         <div className='flex flex-col md:flex-row gap-6 md:gap-10'>
           <CoursesFilter filters={filters} setFilters={setFilters} setCurrentPage={setCurrentPage} />
-          <div className='flex flex-col gap-6 md:gap-8'>
+          <div className='flex flex-col gap-6 md:gap-8 w-full'>
             <div className='flex gap-4 justify-end'>
               <Sorter sorter={sorter} setSorter={setSorter} setCurrentPage={setCurrentPage} />
               <SearchBar setSearch={setSearch} setCurrentPage={setCurrentPage} />
