@@ -46,10 +46,3 @@ export async function deleteCategory(id) {
 
   return category
 }
-
-
-// const result = await createCategory('')
-const result2 = await getCategories()
-
-// console.log(result);
-console.log(result2);

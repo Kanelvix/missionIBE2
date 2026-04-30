@@ -15,6 +15,11 @@ export async function getMaterial(id) {
 }
 
 export async function createMaterial(modul_id, title, duration, type, caption, file_url, material_video_url, sequence) {
+  const types = ['summary', 'video', 'quiz']
+  if (!types.includes(type)) {
+    throw new Error(`Invalid type. Must be one of: ${types.join(', ')}`)
+  }
+
   const [result] = await pool.query(`
     INSERT INTO material (modul_id, title, duration, type, caption, file_url, material_video_url, sequence) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `, [modul_id, title, duration, type, caption, file_url, material_video_url, sequence])
@@ -24,6 +29,11 @@ export async function createMaterial(modul_id, title, duration, type, caption, f
 
 
 export async function updateMaterial(id, title, type, caption, file_url, material_video_url, sequence) {
+  const types = ['summary', 'video', 'quiz']
+  if (!types.includes(type)) {
+    throw new Error(`Invalid type. Must be one of: ${types.join(', ')}`)
+  }
+
   await pool.query(`
     UPDATE material
     SET title = ?, type = ?, caption = ?, file_url = ?, material_video_url = ?, sequence = ?
@@ -46,10 +56,3 @@ export async function deleteMaterial(id) {
 
   return material
 }
-
-
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getMaterials()
-
-// console.log(result);
-console.log(result2);

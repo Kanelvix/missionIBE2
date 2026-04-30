@@ -46,10 +46,3 @@ export async function deleteReview(id) {
 
   return review
 }
-
-
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getReviews()
-
-// console.log(result);
-console.log(result2);

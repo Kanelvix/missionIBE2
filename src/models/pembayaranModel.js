@@ -21,21 +21,3 @@ export async function createPayment(order_id, method, payment_status) {
   const payment_id = result.insertId
   return getPayment(payment_id)
 }
-
-
-export async function updatePayment(id, method) {
-  await pool.query(`
-    UPDATE pembayaran
-    SET method = ?
-    WHERE payment_id = ?
-  `, [method, id])
-
-  return getPayment(id)
-}
-
-
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getPayments()
-
-// console.log(result);
-console.log(result2);

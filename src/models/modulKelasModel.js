@@ -45,9 +45,3 @@ export async function deleteClassModule(id) {
 
   return module
 }
-
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getClassModules()
-
-// console.log(result);
-console.log(result2);

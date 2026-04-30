@@ -54,12 +54,3 @@ export async function deleteUser(id) {
 
   return user
 }
-
-
-// const result = await createUser('test', 'test', 'test', 'test', 'test')
-const result2 = await getUsers()
-// const result3 = await deleteUser(1)
-
-// console.log(result);
-console.log(result2);
-// console.log(result3);

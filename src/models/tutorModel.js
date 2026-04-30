@@ -15,6 +15,10 @@ export async function getTutor(id) {
 }
 
 export async function createTutor(profession, company, user_id) {
+  await pool.query(`
+    UPDATE users SET role = 'tutor' WHERE user_id = ?
+  `, [user_id])
+
   const [result] = await pool.query(`
     INSERT INTO tutor (profession, company, user_id) VALUES (?, ?, ?)
   `, [profession, company, user_id])
@@ -40,16 +44,13 @@ export async function deleteTutor(id) {
   if (!tutor) return null
 
   await pool.query(`
+    UPDATE users SET role = 'student' WHERE user_id = ?
+  `, [tutor.user_id])
+
+  await pool.query(`
     DELETE FROM tutor
     WHERE tutor_id = ?
   `, [id])
 
   return tutor
 }
-
-
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getTutors()
-
-// console.log(result);
-console.log(result2);

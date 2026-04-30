@@ -34,10 +34,3 @@ export async function deleteOrder(id) {
 
   return order
 }
-
-
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getOrders()
-
-// console.log(result);
-console.log(result2);

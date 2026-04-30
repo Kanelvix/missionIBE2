@@ -22,8 +22,15 @@ export async function createMyClass(product_id, user_id) {
   return getMyClass(myclass_id)
 }
 
-// const result = await createTutor('test', 'test', 'test')
-const result2 = await getMyClasses()
+export async function deleteMyClass(id) {
+  const myClass = await getMyClass(id)
 
-// console.log(result);
-console.log(result2);
+  if (!myClass) return null
+
+  await pool.query(`
+    DELETE FROM kelas_saya
+    WHERE myclass_id = ?
+  `, [id])
+
+  return myClass
+}

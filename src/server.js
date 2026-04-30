@@ -1,30 +1,32 @@
 import express from 'express'
-// import { getProducts } from './models/produkModel'
-// import { getTutor, getTutors } from './models/tutorModel.js'
-import { getUser, getUsers } from './models/usersModel.js'
-// import { getCategories, getCategory } from './models/kategoriKelasModel.js'
-// import { createUser, getUser, getUsers } from './models/usersModel.js'
+
+import kategoriKelasRoute from './routes/kategoriKelasRoute.js'
+import kelasSayaRoute from './routes/kelasSayaRoute.js'
+import materialRoute from './routes/materialRoute.js'
+import modulKelasRoute from './routes/modulKelasRoute.js'
+import orderRoute from './routes/orderRoute.js'
+import pembayaranRoute from './routes/pembayaranRoute.js'
+import pretestRoute from './routes/pretestRoute.js'
+import produkRoute from './routes/produkRoute.js'
+import reviewRoute from './routes/reviewRoute.js'
+import tutorRoute from './routes/tutorRoute.js'
+import usersRoute from './routes/usersRoute.js'
 
 const app = express()
 
 app.use(express.json()) 
 
-app.get("/", async (req, res) => {
-  const products = await getUsers()
-  res.send(products)
-})
-
-app.get("/:id", async (req, res) => {
-  const id = req.params.id
-  const product = await getUser(id)
-  res.send(product)
-})
-
-// app.post("/", async (req, res) => {
-//   const { name, pwd, email, profile_picture, phone_number } = req.body
-//   const user = await createUser(name, pwd, email, profile_picture, phone_number)
-//   res.status(201).send(user)
-// })
+app.use('/category', kategoriKelasRoute)
+app.use('/myclass', kelasSayaRoute)
+app.use('/material', materialRoute)
+app.use('/module', modulKelasRoute)
+app.use('/order', orderRoute)
+app.use('/payment', pembayaranRoute)
+app.use('/pretest', pretestRoute)
+app.use('/product', produkRoute)
+app.use('/review', reviewRoute)
+app.use('/tutor', tutorRoute)
+app.use('/users', usersRoute)
 
 
 app.use((err, req, res, next) => {
