@@ -2,7 +2,7 @@ import pool from "../config/database.js"
 
 
 export async function getProducts() {
-  const [rows] = await pool.query("SELECT * FROM produk")
+  const [rows] = await pool.query("SELECT * FROM produk WHERE is_deleted = FALSE")
   return rows
 }
 
@@ -10,7 +10,7 @@ export async function getProduct(id) {
   const [rows] = await pool.query(`
     SELECT *
     FROM produk
-    WHERE product_id = ?
+    WHERE product_id = ? AND is_deleted = FALSE
     `, [id])
   return rows[0]
 }
@@ -35,6 +35,18 @@ export async function updateProduct(id, title, price, description, thumbnail_url
   return getProduct(id)
 }
 
+
+export async function softDeleteProduct(id) {
+  const product = await getProduct(id)
+
+  if (!product) return null
+
+  await pool.query(`
+    UPDATE produk SET is_deleted = TRUE WHERE product_id = ?
+  `, [id])
+
+  return product
+}
 
 export async function deleteProduct(id) {
   const product = await getProduct(id)

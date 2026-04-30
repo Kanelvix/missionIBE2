@@ -1,5 +1,5 @@
 import express from 'express'
-import { createProduct, deleteProduct, getProduct, getProducts, updateProduct } from '../models/produkModel.js'
+import { createProduct, deleteProduct, getProduct, getProducts, softDeleteProduct, updateProduct } from '../models/produkModel.js'
 
 const router = express.Router()
 
@@ -27,10 +27,17 @@ router.patch('/:id', async (req, res) => {
   res.json(product)
 })
 
+router.patch('/:id/delete', async (req, res) => {
+  const product = await softDeleteProduct(req.params.id)
+  if (!product) return res.status(404).json({message: "Product not found"})
+  res.json(product)
+})
+
 router.delete('/:id', async (req, res) => {
   const product = await deleteProduct(req.params.id)
   if (!product) return res.status(404).json({message: "Product not found"})
   res.json(product)
 })
+
 
 export default router
